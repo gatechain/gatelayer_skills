@@ -44,4 +44,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 This project is licensed under the terms of the included LICENSE file.
 
 ---
-[GateLayer]:(https://www.gatechain.io/docs/zh/GateLayer/Introduction/ ) 
+[GateLayer]:https://www.gatechain.io/docs/GateLayer/Introduction/ 
