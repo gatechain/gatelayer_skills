@@ -1,6 +1,6 @@
-# Contributing to Gatelayer Skills
+# Contributing to GateLayer Skills
 
-Thank you for your interest in contributing to Gate layer Skills!
+Thank you for your interest in contributing to GateLayer Skills!
 
 Due to security concerns, contributions are limited to the Gatelayer core team currently.
 
