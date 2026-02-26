@@ -111,3 +111,34 @@ Read the reference for the feature you're implementing:
 - Handle paymaster failures gracefully
 - Provide fallback to user-paid gas when sponsorship unavailable
 - Consider auxiliary funds (off-chain balances) when showing "insufficient funds"
+
+## Architecture Notes
+
+### Alchemy AA SDK vs Base Account SDK
+
+- **Base Account** uses custom `@base-org/account` SDK with Coinbase-specific features
+- **GateLayer AA Wallet** uses Alchemy's standard Light Account implementation
+- Light Account is more lightweight and has lower deployment costs
+- Both follow ERC-4337 standard but with different APIs
+
+### Why Light Account?
+
+- **Battle-tested** - Based on Ethereum Foundation's SimpleAccount
+- **Gas optimized** - Significantly reduced gas costs vs alternatives
+- **Standard compliance** - Full ERC-4337 and ERC-1271 support
+- **Audit verified** - Quantstamp audited for production use
+- **Multi-chain support** - Works across all EVM chains including GateLayer
+
+### Bundler Configuration
+
+Alchemy AA SDK handles bundling automatically:
+- UserOperations are submitted to Alchemy's Bundler
+- No manual bundler endpoint configuration needed
+- Alchemy GateLayer RPC recommended for best compatibility
+
+## For Edge Cases and Latest API Changes
+
+- **Alchemy AA SDK Docs**: https://docs.alchemy.com/reference/aa-sdk
+- **ERC-4337 Specification**: https://eips.ethereum.org/EIPS/eip-4337
+- **GateLayer Documentation**: https://www.gatechain.io/docs/GateLayer/Introduction/
+- **GateLayer Network Config**: Use @connecting-to-gatelayer-network skill
