@@ -10,6 +10,7 @@
 | [Connecting to GateLayer Network](./skills/connecting-to-gatelayer-network/SKILL.md) | Provides GateLayer Mainnet and Testnet network configuration, RPC endpoints, chain IDs, and explorer URLs. |
 | [Deploying Contracts on GateLayer](./skills/deploying-contracts-on-gatelayer/SKILL.md) | Deploys  contracts on GateLayer with Foundry, plus common troubleshooting guidance. |
 | [Running a Gatelayer Node](./skills/running-a-gatelayer-node/SKILL.md) | Covers production node setup, hardware requirements, networking ports, and syncing guidance. |
+| [Building with GateLayer AA Wallet](./skills/building-with-gatelayer-aa/SKILL.md) | Integrates Alchemy AA SDK for GateLayer smart wallet functionality including authentication, gas sponsorship, and batch transactions. |
 
 ## Installation
 
