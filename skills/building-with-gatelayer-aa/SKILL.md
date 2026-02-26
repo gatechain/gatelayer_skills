@@ -60,3 +60,15 @@ const result = await client.sendUserOperation({
 
 console.log("Transaction Hash:", result.hash);
 ```
+
+## Feature References
+
+Read the reference for the feature you're implementing:
+
+| Feature | Reference | When to Read |
+|---------|-----------|-------------|
+| Authentication | [references/authentication.md](references/authentication.md) | Email/Social/Passkey login, backend verification, multi-provider setup |
+| Smart Wallet | [references/smart-wallet.md](references/smart-wallet.md) | Light Account creation, import, management, signing |
+| Paymaster | [references/paymaster.md](references/paymaster.md) | Gas sponsorship setup, policy configuration, cost control |
+| Batch Transactions | [references/batch-transactions.md](references/batch-transactions.md) | Atomic batching, multi-call execution, gas optimization |
+| Troubleshooting | [references/troubleshooting.md](references/troubleshooting.md) | Debugging, common errors, FAQ, best practices |
