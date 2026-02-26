@@ -6,3 +6,57 @@ description: Integrates Alchemy AA SDK for GateLayer smart wallet functionality.
 # Building with GateLayer AA Wallet
 
 GateLayer AA Wallet provides ERC-4337 smart wallet functionality using Alchemy's Light Account. Enable passwordless authentication, gasless transactions, and batched operations on GateLayer Mainnet and Testnet.
+
+## Quick Start
+
+### Installation
+
+```bash
+npm install @alchemy/aa-alchemy @alchemy/aa-accounts @alchemy/aa-core viem
+```
+
+### Basic Setup
+
+```typescript
+import { createLightAccountAlchemyClient } from "@alchemy/aa-alchemy";
+import { http } from "viem";
+
+// GateLayer network configuration
+const gatelayerMainnet = {
+  id: 10088, // From connecting-to-gatelayer-network skill
+  name: "GateLayer",
+  rpcUrls: {
+    public: {
+      http: ["https://gatelayer-mainnet.gatenode.cc"]
+    }
+  },
+  nativeCurrency: {
+    name: "GT",
+    symbol: "GT",
+    decimals: 18
+  }
+};
+
+const client = await createLightAccountAlchemyClient({
+  apiKey: process.env.ALCHEMY_API_KEY,
+  chain: gatelayerMainnet,
+  owner: signer, // Obtained from authentication
+});
+
+// Get account address
+console.log("Smart Account Address:", client.account.address);
+```
+
+### First Transaction
+
+```typescript
+const result = await client.sendUserOperation({
+  uo: {
+    target: "0xRecipientAddress",
+    data: "0x",
+    value: 0n,
+  },
+});
+
+console.log("Transaction Hash:", result.hash);
+```
