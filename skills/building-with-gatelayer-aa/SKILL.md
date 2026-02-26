@@ -72,3 +72,42 @@ Read the reference for the feature you're implementing:
 | Paymaster | [references/paymaster.md](references/paymaster.md) | Gas sponsorship setup, policy configuration, cost control |
 | Batch Transactions | [references/batch-transactions.md](references/batch-transactions.md) | Atomic batching, multi-call execution, gas optimization |
 | Troubleshooting | [references/troubleshooting.md](references/troubleshooting.md) | Debugging, common errors, FAQ, best practices |
+
+## Critical Requirements
+
+### Security
+
+- **Track transaction IDs** to prevent replay attacks - use database with unique constraints
+- **Verify sender matches authenticated user** to prevent impersonation
+- **Never expose Paymaster URLs** client-side - use a proxy server
+- **Paymaster providers must be ERC-7677 compliant** with Alchemy AA SDK
+- **Generate nonces before user interaction** to avoid popup blockers
+
+### Network Configuration
+
+- **Use connecting-to-gatelayer-network skill** to get correct Chain IDs and RPC endpoints
+- **Mainnet Chain ID**: 10088
+- **Testnet Chain ID**: 10087
+- **Always validate Chain ID** before signing transactions
+- **Use HTTPS RPC endpoints only** - reject any `http://` endpoints
+
+### Popup Handling
+
+- Generate nonces **before** user clicks "Sign in" button
+- Use `Cross-Origin-Opener-Policy: same-origin-allow-popups`
+- **Do NOT use** `same-origin` - it breaks wallet popups
+- Handle popup rejections gracefully with user feedback
+
+### Light Account Specific
+
+- **ERC-6492 wrapper** enables signature verification before deployment
+- Viem's `verifyMessage`/`verifyTypedData` handle this automatically
+- Account may not be deployed until first transaction
+- Check deployment status with `client.isAccountDeployed()`
+
+### Gas Estimation
+
+- Always estimate gas before sending transactions
+- Handle paymaster failures gracefully
+- Provide fallback to user-paid gas when sponsorship unavailable
+- Consider auxiliary funds (off-chain balances) when showing "insufficient funds"
