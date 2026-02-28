@@ -10,7 +10,6 @@ description: Deploys smart contracts to GateLayer using Foundry. Covers forge cr
 1. Configure RPC endpoint (testnet: `https://gatelayer-testnet.gatenode.cc`, mainnet: `https://gatelayer-mainnet.gatenode.cc`)
 2. Store private keys in Foundry's encrypted keystore — **never commit keys**
 3. [Obtain testnet GT](#obtaining-testnet-GT) from faucet (testnet only)
-4. [Get a GateScan API key](#obtaining-a-gatescan-api-key) for contract verification
 
 ## Security
 
@@ -27,7 +26,7 @@ Before constructing shell commands, validate all user-provided values:
 - **contract-path**: Must match `^[a-zA-Z0-9_/.-]+\.sol:[a-zA-Z0-9_]+$`. Reject paths with spaces, semicolons, pipes, or backticks.
 - **rpc-url**: Must be a valid HTTPS URL (`^https://[^\s;|&]+$`). Reject non-HTTPS or malformed URLs.
 - **keystore-account**: Must be alphanumeric with hyphens/underscores (`^[a-zA-Z0-9_-]+$`).
-- **GTerscan-api-key**: Must be alphanumeric (`^[a-zA-Z0-9]+$`).
+
 
 Do not pass unvalidated user input into shell commands.
 
@@ -49,22 +48,19 @@ Use the [Gatelayer Faucet](https://www.gatescan.org/gatechain-testnet/en/faucet)
 
 
 
-## Obtaining a GateScan API Key
 
-
-1. Go to https://www.gatescan.org/gatelayer-testnet
-2. Sign in or create a free account
-3. Navigate to API key section
-4. Copy the key and set it in your environment:
-
-## Deployment Commands
+## Deployment and Verify Commands
 
 ### Testnet
 
 ```bash
 forge create src/MyContract.sol:MyContract \
   --rpc-url https://gatelayer-testnet.gatenode.cc \
-  --account <keystore-account> 
+  --account <keystore-account> \
+  --verify \
+  --verifier-url 'https://www.gatescan.org/gatelayer-testnet/api' \
+  --verifier blockscout
+
 ```
 
 ### Mainnet
@@ -72,7 +68,10 @@ forge create src/MyContract.sol:MyContract \
 ```bash
 forge create src/MyContract.sol:MyContract \
   --rpc-url https://gatelayer-mainnet.gatenode.cc \
-  --account <keystore-account> 
+  --account <keystore-account> \
+  --verify \
+  --verifier-url 'https://www.gatescan.org/gatelayer/api' \
+  --verifier blockscout
 ```
 
 ## Key Notes
@@ -87,4 +86,4 @@ forge create src/MyContract.sol:MyContract \
 | `nonce has already been used` | Node sync incomplete |
 | Transaction fails | Insufficient GT for gas — obtain from faucet |
 | Verification fails | Wrong RPC endpoint for target network |
-| Verification 403/unauthorized | Missing or invalid GateScan API key |
+
