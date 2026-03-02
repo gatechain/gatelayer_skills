@@ -436,3 +436,79 @@ cast send \
   --create <bytecode> \
   [constructor_args...]
 ```
+
+## GateLayer-Specific Examples
+
+### Check GT Balance on Mainnet
+
+```bash
+# Check your GT balance on GateLayer Mainnet
+cast balance 0xYourAddress --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+### Check GT Balance on Testnet
+
+```bash
+# Check your GT balance on GateLayer Testnet
+cast balance 0xYourAddress --rpc-url https://gatelayer-testnet.gatenode.cc
+```
+
+### Send GT on Mainnet with Complete Safety Flow
+
+```bash
+# Step 1: Verify you're on Mainnet (should return 10088)
+cast chain-id --rpc-url https://gatelayer-mainnet.gatenode.cc
+
+# Step 2: Check your GT balance
+cast balance 0xYourAddress --rpc-url https://gatelayer-mainnet.gatenode.cc
+
+# Step 3: Estimate gas for 1 GT transfer
+cast estimate 0xRecipientAddress --rpc-url https://gatelayer-mainnet.gatenode.cc --value 1ether
+
+# Step 4: Send 1 GT
+cast send \
+  --private-key $PRIVATE_KEY \
+  --rpc-url https://gatelayer-mainnet.gatenode.cc \
+  0xRecipientAddress \
+  --value 1000000000000000000
+```
+
+### Query GateLayer Block Information
+
+```bash
+# Get latest block on GateLayer Mainnet
+cast block --latest --rpc-url https://gatelayer-mainnet.gatenode.cc
+
+# Get specific block number
+cast block 100000 --rpc-url https://gatelayer-mainnet.gatenode.cc
+
+# Get block number and timestamp
+cast block-number --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+### Verify GateLayer Network Connection
+
+```bash
+# Verify Mainnet connection (should return 10088)
+cast chain-id --rpc-url https://gatelayer-mainnet.gatenode.cc
+
+# Verify Testnet connection (should return 10087)
+cast chain-id --rpc-url https://gatelayer-testnet.gatenode.cc
+```
+
+### Call Contract on GateLayer Mainnet
+
+```bash
+# Example: Get token total supply on GateLayer
+cast call 0xTokenContract "totalSupply()(uint256)" --rpc-url https://gatelayer-mainnet.gatenode.cc
+
+# Example: Get token decimals
+cast call 0xTokenContract "decimals()(uint8)" --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+### Monitor GateLayer Gas Price
+
+```bash
+# Check current gas price on GateLayer Mainnet
+cast gas-price --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
