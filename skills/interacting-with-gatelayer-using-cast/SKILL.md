@@ -51,3 +51,34 @@ For other platforms or detailed instructions, see the full guide at https://getf
 - Foundry installed (`cast` command available)
 - GateLayer RPC endpoint (Mainnet or Testnet - provided below)
 - Private key for transaction operations (if sending GT or writing to contracts)
+
+## GateLayer Network Configuration
+
+This skill uses hardcoded GateLayer RPC endpoints for quick access. For advanced setup or alternative RPC providers, see the @connecting-to-gatelayer-network skill.
+
+### Mainnet
+
+| Property | Value |
+|----------|-------|
+| Network Name | GateLayer |
+| Chain ID | `10088` |
+| RPC Endpoint | `https://gatelayer-mainnet.gatenode.cc` |
+| Native Currency | **GT** |
+| Explorer | https://www.gatescan.org/gatelayer |
+
+### Testnet
+
+| Property | Value |
+|----------|-------|
+| Network Name | GateLayer Testnet |
+| Chain ID | `10087` |
+| RPC Endpoint | `https://gatelayer-testnet.gatenode.cc` |
+| Native Currency | **GT** |
+| Explorer | https://www.gatescan.org/gatelayer-testnet |
+
+### Quick Reference
+
+**Mainnet RPC**: `https://gatelayer-mainnet.gatenode.cc`
+**Testnet RPC**: `https://gatelayer-testnet.gatenode.cc`
+**Mainnet Chain ID**: `10088`
+**Testnet Chain ID**: `10087`
