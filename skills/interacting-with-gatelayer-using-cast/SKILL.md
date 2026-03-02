@@ -355,3 +355,84 @@ Before sending transactions on GateLayer:
 - [ ] Verify recipient address is correct
 - [ ] Test on testnet first for new contracts or large amounts
 - [ ] Use small test transactions before large transfers
+
+## Advanced Usage
+
+### Decoding Data
+
+Convert hex values to readable formats:
+
+```bash
+# Convert hex to ASCII
+cast --to-ascii 0x48656c6c6f
+# Output: "Hello"
+
+# Convert hex to decimal
+cast --to-dec 0xde0b6b3a7640000
+# Output: 1000000000000000000
+
+# Convert wei to GT
+cast --to-unit 1000000000000000000 gt
+# Output: 1.0 GT
+```
+
+### Gas Price Queries
+
+Check current gas price on GateLayer:
+
+```bash
+cast gas-price --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+### Batch Operations
+
+Query multiple addresses efficiently using shell loops:
+
+```bash
+# Check balances for multiple addresses
+for addr in 0xAddr1 0xAddr2 0xAddr3; do
+  echo "Balance of $addr: $(cast balance $addr --rpc-url https://gatelayer-mainnet.gatenode.cc) GT"
+done
+```
+
+Query multiple blocks:
+```bash
+for block in 1000000 1000001 1000002; do
+  echo "Block $block:"
+  cast block $block --rpc-url https://gatelayer-mainnet.gatenode.cc
+done
+```
+
+### Working with ABIs
+
+For complex contracts, save ABI to file and use it:
+
+```bash
+# Save ABI (example)
+cat > token.abi << 'EOF'
+[
+  {
+    "name": "totalSupply",
+    "type": "function",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{"name": "", "type": "uint256"}]
+  }
+]
+EOF
+
+# Use ABI for calls
+cast call --abi token.abi <contract_address> totalSupply --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+### Contract Deployment with Cast
+
+Deploy simple contracts (for complex deployments, see @deploying-contracts-on-gatelayer):
+
+```bash
+cast send \
+  --private-key $PRIVATE_KEY \
+  --rpc-url https://gatelayer-mainnet.gatenode.cc \
+  --create <bytecode> \
+  [constructor_args...]
+```
