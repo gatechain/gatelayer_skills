@@ -292,3 +292,66 @@ cast chain-id --rpc-url https://gatelayer-mainnet.gatenode.cc
 cast chain-id --rpc-url https://gatelayer-testnet.gatenode.cc
 # Expected: 10087
 ```
+
+## Error Handling & Troubleshooting
+
+### Common Errors
+
+#### RPC Connection Errors
+
+**Symptoms:** `Failed to fetch`, `Connection refused`, `timeout`
+
+**Solutions:**
+- Check RPC URL is correct: `https://gatelayer-mainnet.gatenode.cc` or `https://gatelayer-testnet.gatenode.cc`
+- Verify network connectivity: `ping gatelayer-mainnet.gatenode.cc`
+- Try alternative: use a self-hosted node (see @running-a-gatelayer-node)
+
+#### Insufficient GT Balance
+
+**Symptoms:** `insufficient funds for gas * price + value`
+
+**Solutions:**
+- Check balance: `cast balance <address> --rpc-url <rpc_url>`
+- Ensure you have enough GT for gas + transaction amount
+- For testnet: get testnet GT from GateLayer faucets
+- For mainnet: acquire GT through bridges or exchanges
+
+#### Gas Estimation Failed
+
+**Symptoms:** `gas required exceeds allowance`, `execution reverted`
+
+**Solutions:**
+- Verify contract address exists on GateLayer
+- Check function signature is correct
+- Ensure contract is deployed on the network you're using
+- Use `cast estimate` before sending to catch errors early
+
+#### Invalid Chain ID
+
+**Symptoms:** `chain ID mismatch`, transaction fails silently
+
+**Solutions:**
+- Verify chain ID: `cast chain-id --rpc-url <rpc_url>`
+- Mainnet should return: `10088`
+- Testnet should return: `10087`
+- Ensure wallet/tools are configured for correct network
+
+#### Private Key Errors
+
+**Symptoms:** `invalid private key`, `failed to decrypt`, `invalid length`
+
+**Solutions:**
+- Ensure private key is 0x-prefixed hex string (64 hex characters + 0x)
+- Never expose private keys in scripts, logs, or version control
+- Use environment variables: `export PRIVATE_KEY=0x...`
+
+### Transaction Safety Checklist
+
+Before sending transactions on GateLayer:
+
+- [ ] Verify chain ID (10088 for mainnet, 10087 for testnet)
+- [ ] Check sufficient GT balance for gas + transaction value
+- [ ] Estimate gas before sending
+- [ ] Verify recipient address is correct
+- [ ] Test on testnet first for new contracts or large amounts
+- [ ] Use small test transactions before large transfers
