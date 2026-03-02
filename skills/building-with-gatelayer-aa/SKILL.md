@@ -1,6 +1,6 @@
 ---
 name: building-with-gatelayer-aa
-description: Integrates Alchemy AA SDK for GateLayer smart wallet functionality. Covers Light Account creation, multi-provider authentication (Email, Social, Passkey), gas sponsorship via Paymasters, and batch transactions. Use when building apps with smart wallet authentication, sponsored transactions, or batched operations on GateLayer. Covers phrases like "create AA wallet on GateLayer", "GateLayer smart wallet", "Gasless transactions GateLayer", "Paymaster setup", "batch transactions GateLayer", or "account abstraction GateLayer".
+description: Integrates Alchemy AA SDK for GateLayer smart wallet functionality. Covers Light Account creation, multi-provider authentication (Email, Social, Passkey), and batch transactions. Use when building apps with smart wallet authentication, sponsored transactions, or batched operations on GateLayer. Covers phrases like "create AA wallet on GateLayer", "GateLayer smart wallet", "Gasless transactions GateLayer", "Paymaster setup", "batch transactions GateLayer", or "account abstraction GateLayer".
 ---
 
 # Building with GateLayer AA Wallet
@@ -69,7 +69,6 @@ Read the reference for the feature you're implementing:
 |---------|-----------|-------------|
 | Authentication | [references/authentication.md](references/authentication.md) | Email/Social/Passkey login, backend verification, multi-provider setup |
 | Smart Wallet | [references/smart-wallet.md](references/smart-wallet.md) | Light Account creation, import, management, signing |
-| Paymaster | [references/paymaster.md](references/paymaster.md) | Gas sponsorship setup, policy configuration, cost control |
 | Batch Transactions | [references/batch-transactions.md](references/batch-transactions.md) | Atomic batching, multi-call execution, gas optimization |
 | Troubleshooting | [references/troubleshooting.md](references/troubleshooting.md) | Debugging, common errors, FAQ, best practices |
 
@@ -79,8 +78,6 @@ Read the reference for the feature you're implementing:
 
 - **Track transaction IDs** to prevent replay attacks - use database with unique constraints
 - **Verify sender matches authenticated user** to prevent impersonation
-- **Never expose Paymaster URLs** client-side - use a proxy server
-- **Paymaster providers must be ERC-7677 compliant** with Alchemy AA SDK
 - **Generate nonces before user interaction** to avoid popup blockers
 
 ### Network Configuration
@@ -111,34 +108,3 @@ Read the reference for the feature you're implementing:
 - Handle paymaster failures gracefully
 - Provide fallback to user-paid gas when sponsorship unavailable
 - Consider auxiliary funds (off-chain balances) when showing "insufficient funds"
-
-## Architecture Notes
-
-### Alchemy AA SDK vs Base Account SDK
-
-- **Base Account** uses custom `@base-org/account` SDK with Coinbase-specific features
-- **GateLayer AA Wallet** uses Alchemy's standard Light Account implementation
-- Light Account is more lightweight and has lower deployment costs
-- Both follow ERC-4337 standard but with different APIs
-
-### Why Light Account?
-
-- **Battle-tested** - Based on Ethereum Foundation's SimpleAccount
-- **Gas optimized** - Significantly reduced gas costs vs alternatives
-- **Standard compliance** - Full ERC-4337 and ERC-1271 support
-- **Audit verified** - Quantstamp audited for production use
-- **Multi-chain support** - Works across all EVM chains including GateLayer
-
-### Bundler Configuration
-
-Alchemy AA SDK handles bundling automatically:
-- UserOperations are submitted to Alchemy's Bundler
-- No manual bundler endpoint configuration needed
-- Alchemy GateLayer RPC recommended for best compatibility
-
-## For Edge Cases and Latest API Changes
-
-- **Alchemy AA SDK Docs**: https://docs.alchemy.com/reference/aa-sdk
-- **ERC-4337 Specification**: https://eips.ethereum.org/EIPS/eip-4337
-- **GateLayer Documentation**: https://www.gatechain.io/docs/GateLayer/Introduction/
-- **GateLayer Network Config**: Use @connecting-to-gatelayer-network skill

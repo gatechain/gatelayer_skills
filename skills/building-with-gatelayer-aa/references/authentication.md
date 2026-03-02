@@ -2,16 +2,28 @@
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [How It Works](#how-it-works)
-- [Supported Providers](#supported-providers)
-- [Email Authentication](#email-authentication)
-- [Social Login](#social-login)
-- [Passkeys](#passkeys)
-- [Traditional Wallets](#traditional-wallets)
-- [Backend Verification](#backend-verification)
-- [Framework Integration](#framework-integration)
-- [Security Checklist](#security-checklist)
+- [Authentication (Multi-Provider Sign-In)](#authentication-multi-provider-sign-in)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [How It Works](#how-it-works)
+  - [Supported Providers](#supported-providers)
+  - [Email Authentication](#email-authentication)
+    - [Setup](#setup)
+    - [Email Flow](#email-flow)
+  - [Social Login](#social-login)
+    - [Supported Providers](#supported-providers-1)
+    - [Implementation](#implementation)
+  - [Passkeys](#passkeys)
+    - [Overview](#overview-1)
+    - [Implementation](#implementation-1)
+  - [Traditional Wallets](#traditional-wallets)
+    - [MetaMask / WalletConnect](#metamask--walletconnect)
+  - [Backend Verification](#backend-verification)
+    - [Verify Signature](#verify-signature)
+    - [Full Backend Example](#full-backend-example)
+  - [Framework Integration](#framework-integration)
+    - [With Wagmi](#with-wagmi)
+    - [With Viem](#with-viem)
 
 ## Overview
 
@@ -224,13 +236,3 @@ const walletClient = createWalletClient({
 });
 ```
 
-## Security Checklist
-
-- [ ] Generate nonces **before** user clicks sign-in button
-- [ ] Track used nonces server-side with Set or database
-- [ ] Verify signatures on backend (never trust frontend)
-- [ ] Use `Cross-Origin-Opener-Policy: same-origin-allow-popups`
-- [ ] Set appropriate session/JWT expiry times
-- [ ] Include Chain ID in verification to prevent cross-chain replay
-- [ ] Validate message format and nonce presence
-- [ ] Use HTTPS for all authentication endpoints
