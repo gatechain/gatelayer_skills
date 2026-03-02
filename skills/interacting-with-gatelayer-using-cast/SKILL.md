@@ -15,3 +15,39 @@ Use this skill when you need to:
 - Send GT or execute contract transactions
 - Inspect blocks, transactions, and network state
 - Estimate gas and verify transactions before sending
+
+## Installation
+
+To use this skill, you need Foundry installed, which provides the `cast` command.
+
+Follow the official installation guide: https://getfoundry.sh/introduction/installation
+
+### Quick Install (Linux/Mac)
+
+1. Install Foundryup:
+   ```bash
+   curl -L https://foundry.paradigm.xyz | bash
+   ```
+
+2. Source your shell configuration or start a new terminal:
+   ```bash
+   source ~/.bashrc  # or ~/.zshrc
+   ```
+
+3. Install Foundry:
+   ```bash
+   foundryup
+   ```
+
+4. Verify installation:
+   ```bash
+   cast --version
+   ```
+
+For other platforms or detailed instructions, see the full guide at https://getfoundry.sh/introduction/installation
+
+## Prerequisites
+
+- Foundry installed (`cast` command available)
+- GateLayer RPC endpoint (Mainnet or Testnet - provided below)
+- Private key for transaction operations (if sending GT or writing to contracts)
