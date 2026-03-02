@@ -233,3 +233,62 @@ cast send \
   0xSpenderAddress \
   1000000000000000000
 ```
+
+## Blockchain Inspection
+
+### Get Latest Block Number
+
+**Mainnet:**
+```bash
+cast block-number --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+**Testnet:**
+```bash
+cast block-number --rpc-url https://gatelayer-testnet.gatenode.cc
+```
+
+### Get Block Details
+
+Get full block information:
+```bash
+cast block <block_number> --rpc-url <rpc_url>
+```
+
+Example - Get specific block on Mainnet:
+```bash
+cast block 1234567 --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+Get latest block:
+```bash
+cast block --latest --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+### Get Transaction Details
+
+Get transaction information:
+```bash
+cast tx <tx_hash> --rpc-url <rpc_url>
+```
+
+Example - Get transaction on Mainnet:
+```bash
+cast tx 0xabc123def456... --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+### Verify Network Connection
+
+Check which GateLayer network you're connected to:
+
+**Mainnet:**
+```bash
+cast chain-id --rpc-url https://gatelayer-mainnet.gatenode.cc
+# Expected: 10088
+```
+
+**Testnet:**
+```bash
+cast chain-id --rpc-url https://gatelayer-testnet.gatenode.cc
+# Expected: 10087
+```
