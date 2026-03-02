@@ -125,3 +125,35 @@ Example:
 ```bash
 cast call 0xA0b86a33E6441e88C5F2712C3E9b74B6F3f5a8b8 "balanceOf(address)(uint256)" 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 --rpc-url https://gatelayer-mainnet.gatenode.cc
 ```
+
+## Call Contract Functions (Read-Only)
+
+Call view/pure functions without sending transactions.
+
+### Basic Syntax
+
+```bash
+cast call <contract_address> "<function_signature>" [args...] --rpc-url <rpc_url>
+```
+
+### Examples
+
+Get token total supply:
+```bash
+cast call 0xA0b86a33E6441e88C5F2712C3E9b74B6F3f5a8b8 "totalSupply()(uint256)" --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+Get token decimals:
+```bash
+cast call 0xA0b86a33E6441e88C5F2712C3E9b74B6F3f5a8b8 "decimals()(uint8)" --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+Get contract owner:
+```bash
+cast call <contract_address> "owner()(address)" --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+Query a mapping with specific key:
+```bash
+cast call <contract_address> "balances(address)(uint256)" 0xYourAddress --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
