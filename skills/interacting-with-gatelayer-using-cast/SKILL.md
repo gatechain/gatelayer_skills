@@ -82,3 +82,46 @@ This skill uses hardcoded GateLayer RPC endpoints for quick access. For advanced
 **Testnet RPC**: `https://gatelayer-testnet.gatenode.cc`
 **Mainnet Chain ID**: `10088`
 **Testnet Chain ID**: `10087`
+
+## Query GT Balance
+
+Get native GT balance of an address on GateLayer.
+
+### Mainnet
+
+```bash
+cast balance <address> --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+### Testnet
+
+```bash
+cast balance <address> --rpc-url https://gatelayer-testnet.gatenode.cc
+```
+
+### Example
+
+Check GT balance on Mainnet:
+```bash
+cast balance 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 --rpc-url https://gatelayer-mainnet.gatenode.cc
+# Output: 1.5 GT
+```
+
+Check GT balance on Testnet:
+```bash
+cast balance 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 --rpc-url https://gatelayer-testnet.gatenode.cc
+# Output: 10 GT (example)
+```
+
+### Query ERC20 Token Balance
+
+Query ERC20 token balances on GateLayer:
+
+```bash
+cast call <token_contract> "balanceOf(address)(uint256)" <address> --rpc-url <rpc_url>
+```
+
+Example:
+```bash
+cast call 0xA0b86a33E6441e88C5F2712C3E9b74B6F3f5a8b8 "balanceOf(address)(uint256)" 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
