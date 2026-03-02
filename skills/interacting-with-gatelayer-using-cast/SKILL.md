@@ -157,3 +157,79 @@ Query a mapping with specific key:
 ```bash
 cast call <contract_address> "balances(address)(uint256)" 0xYourAddress --rpc-url https://gatelayer-mainnet.gatenode.cc
 ```
+
+## Send Transactions
+
+Send GT or execute contract functions with proper safety checks.
+
+### Safety Workflow
+
+Always follow these steps before sending transactions on GateLayer:
+
+1. **Verify chain ID** - Ensure you're on the correct network
+2. **Check GT balance** - Confirm sufficient funds for gas + value
+3. **Estimate gas** - Verify transaction will succeed
+4. **Send transaction** - Execute with proper parameters
+
+### Send GT (Native Token)
+
+**Step 1: Verify Network**
+
+```bash
+cast chain-id --rpc-url https://gatelayer-mainnet.gatenode.cc
+# Expected output: 10088
+```
+
+**Step 2: Check Balance**
+
+```bash
+cast balance 0xYourAddress --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+**Step 3: Estimate Gas**
+
+```bash
+cast estimate 0xRecipientAddress --rpc-url https://gatelayer-mainnet.gatenode.cc --value 1ether
+```
+
+**Step 4: Send Transaction**
+
+```bash
+cast send \
+  --private-key $PRIVATE_KEY \
+  --rpc-url https://gatelayer-mainnet.gatenode.cc \
+  0xRecipientAddress \
+  --value 1000000000000000000
+```
+
+This sends 1 GT (1 GT = 10^18 wei).
+
+### Execute Contract Function
+
+**Step 1: Estimate Gas**
+
+```bash
+cast estimate <contract_address> "<function_signature>" [args...] --rpc-url https://gatelayer-mainnet.gatenode.cc
+```
+
+**Step 2: Send Transaction**
+
+```bash
+cast send \
+  --private-key $PRIVATE_KEY \
+  --rpc-url https://gatelayer-mainnet.gatenode.cc \
+  <contract_address> \
+  "<function_signature>" \
+  [args...]
+```
+
+Example - Approve ERC20 spend:
+```bash
+cast send \
+  --private-key $PRIVATE_KEY \
+  --rpc-url https://gatelayer-mainnet.gatenode.cc \
+  0xA0b86a33E6441e88C5F2712C3E9b74B6F3f5a8b8 \
+  "approve(address,uint256)" \
+  0xSpenderAddress \
+  1000000000000000000
+```
