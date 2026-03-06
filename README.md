@@ -8,6 +8,7 @@
 | Skill | Description |
 | ----- | ----------- |
 | [Connecting to GateLayer Network](./skills/connecting-to-gatelayer-network/SKILL.md) | Provides GateLayer Mainnet and Testnet network configuration, RPC endpoints, chain IDs, and explorer URLs. |
+| [Interacting with GateLayer Using Cast](./skills/interacting-with-gatelayer-using-cast/SKILL.md) | Interact with GateLayer blockchain using Foundry's cast tool for querying GT balances, calling contracts, sending transactions, and blockchain exploration. |
 | [Deploying Contracts on GateLayer](./skills/deploying-contracts-on-gatelayer/SKILL.md) | Deploys  contracts on GateLayer with Foundry, plus common troubleshooting guidance. |
 | [Running a Gatelayer Node](./skills/running-a-gatelayer-node/SKILL.md) | Covers production node setup, hardware requirements, networking ports, and syncing guidance. |
 
